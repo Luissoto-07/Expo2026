@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroPuntos - Gana Recompensas</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/coupons.css">
+  <!-- Evitar flash de tema incorrecto -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('agropuntos-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="assets/logo.png" alt="AgroPuntos" class="navbar-logo">
+      <span class="navbar-brand-name">Agro<span>Puntos</span></span>
+    </a>
+
+    <ul class="navbar-nav">
+      <li><a href="index.html">🏠 Inicio</a></li>
+      <li><a href="listado.html">📊 Listado</a></li>
+      <li><a href="contacto.html">✉️ Contacto</a></li>
+    </ul>
+
+    <div class="navbar-actions">
+      <button class="theme-toggle" title="Cambiar tema">☀️</button>
+      <button class="points-badge">
+        <span class="coin">🪙</span>
+        <span class="points-text user-points-display">1,250 pts</span>
+      </button>
+      <button class="navbar-hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="navbar-mobile">
+    <a href="index.html">🏠 Inicio</a>
+    <a href="listado.html">📊 Listado</a>
+    <a href="contacto.html">✉️ Contacto</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Contenido izquierdo -->
+    <div class="hero-content">
+
+      <!-- Chip animado -->
+      <div class="hero-chip">
+        <span class="hero-chip-dot"></span>
+        Programa de recompensas activo
+      </div>
+
+      <!-- Título -->
+      <h1 class="hero-title">
+        Gana puntos.<br>
+        Canjea recompensas.<br>
+        <span class="highlight">¡Motívate!</span>
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="hero-subtitle">
+        Completa tareas, acumula puntos y canjea increíbles premios.
+        ¡Forma parte de nuestro programa de recompensas corporativo!
+      </p>
+
+      <!-- Botones -->
+      <div class="hero-actions">
+        <a href="listado.html" class="btn-hero-secondary">
+          🏆 Ver clasificación
+        </a>
+        <a href="#cupones" class="btn btn-primary">
+          🎁 Ver cupones
+        </a>
+      </div>
+
+      <!-- Estadísticas -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">40</span>
+          <span class="hero-stat-label">Tareas</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">32</span>
+          <span class="hero-stat-label">Cupones</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">100%</span>
+          <span class="hero-stat-label">Participación</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Logo animado -->
+    <div class="hero-visual">
+      <div class="hero-logo-wrapper">
+        <!-- Anillo giratorio -->
+        <div class="hero-logo-ring"></div>
+        <!-- Círculo de fondo -->
+        <div class="hero-logo-bg"></div>
+        <!-- Puntos decorativos -->
+        <span class="hero-logo-dot"></span>
+        <span class="hero-logo-dot"></span>
+        <span class="hero-logo-dot"></span>
+        <!-- Logo -->
+        <img
+          src="assets/logo.png"
+          alt="AgroPuntos"
+          class="hero-logo-img"
+        >
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ═══════ CÓMO FUNCIONA ═══════ -->
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title">¿Cómo funciona?</h2>
+    <div class="steps-grid">
+      <div class="step-card" style="animation-delay:.1s">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Únete al Canal</h3>
+        <p class="step-desc">Ingresa al canal de WhatsApp corporativo y activa las notificaciones.</p>
+      </div>
+      <div class="step-card" style="animation-delay:.2s">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Completa Tareas</h3>
+        <p class="step-desc">Realiza las tareas asignadas dentro del canal y valida tu participación.</p>
+      </div>
+      <div class="step-card" style="animation-delay:.3s">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Acumula Puntos</h3>
+        <p class="step-desc">Cada tarea completada suma puntos a tu cuenta automáticamente.</p>
+      </div>
+      <div class="step-card" style="animation-delay:.4s">
+        <div class="step-number">4</div>
+        <h3 class="step-title">Canjea Premios</h3>
+        <p class="step-desc">Elige tus recompensas favoritas, canjéalas y espera aprobación del admin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CUPONES ═══════ -->
+<section class="coupons-section" id="cupones">
+  <div class="container">
+
+    <!-- Encabezado -->
+    <div class="coupons-header">
+      <div class="section-badge green">🎁 RECOMPENSAS DISPONIBLES</div>
+      <h2 class="section-title">Cupones para Canjear</h2>
+      <div class="points-info">
+        🪙 Tienes <strong id="hero-pts">&nbsp;1,250&nbsp;</strong> puntos disponibles. ¡Elige tu premio!
+      </div>
+    </div>
+
+    <!-- Filtros por categoría -->
+    <div class="coupons-filters">
+      <button class="filter-btn active" data-filter="all">🎯 Todos (32)</button>
+      <button class="filter-btn" data-filter="alimentación">🍿 Alimentación</button>
+      <button class="filter-btn" data-filter="beneficios">🅿️ Beneficios</button>
+      <button class="filter-btn" data-filter="tiempo">🌴 Tiempo</button>
+      <button class="filter-btn" data-filter="educación">📚 Educación</button>
+      <button class="filter-btn" data-filter="salud">💪 Salud</button>
+      <button class="filter-btn" data-filter="merchandise">🎁 Merchandise</button>
+      <button class="filter-btn" data-filter="consumo">💳 Consumo</button>
+    </div>
+
+    <!-- Carrusel -->
+    <div class="carousel-outer">
+
+      <!-- Info y contador -->
+      <div class="carousel-info">
+        <span class="carousel-counter" id="carousel-counter">
+          Mostrando <strong>1–4</strong> de <strong>32</strong> cupones
+        </span>
+      </div>
+
+      <!-- Controles de navegación -->
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Anterior">&#8249;</button>
+        <button class="carousel-btn" id="carousel-next" aria-label="Siguiente">&#8250;</button>
+      </div>
+
+      <!-- Viewport (ventana visible) -->
+      <div class="carousel-viewport" id="carousel-viewport">
+        <div class="carousel-track" id="carousel-track">
+          <!-- Generado por JS -->
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="carousel-dots" id="carousel-dots"></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Modal de canje -->
+<div class="modal-overlay" id="redeem-modal">
+  <div class="modal">
+    <div id="modal-content"></div>
+  </div>
+</div>
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <p>© 2026 AgroPuntos · Hecho con <span class="heart">❤️</span> para tu equipo.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="js/theme.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/data.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/coupons.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ThemeManager.init();
+    NavbarManager.init();
+    CouponsManager.init();
+
+    // Puntos en la sección de cupones
+    const heroPts = document.getElementById('hero-pts');
+    const sync = pts => { if (heroPts) heroPts.textContent = ' ' + Number(pts).toLocaleString() + ' '; };
+    sync(AppState.currentUser.points);
+    AppState.onPointsChange(sync);
+  });
+</script>
+</body>
+</html>

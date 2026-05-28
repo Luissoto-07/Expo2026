@@ -1,0 +1,189 @@
+/* ============================================
+   CONTACT - Página de contacto
+   ============================================ */
+
+.contact-page {
+  padding: 98px 0 78px;
+  min-height: 100vh;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 38px;
+}
+
+/* ── Tarjeta del formulario ── */
+.contact-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 30px;
+}
+.contact-form-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 26px;
+}
+
+/* ── Campos del formulario ── */
+.form-group { margin-bottom: 18px; }
+
+.form-label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 9px;
+  color: var(--text-primary);
+  font-size: 14.5px;
+  outline: none;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--text-muted); }
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238696A0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+/* Opciones del select en modo oscuro */
+.form-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.form-textarea {
+  min-height: 138px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Error */
+.form-input.error,
+.form-select.error,
+.form-textarea.error {
+  border-color: #EA4335;
+  box-shadow: 0 0 0 3px rgba(234,67,53,0.14);
+}
+.form-error-msg {
+  font-size: 12px;
+  color: #EA4335;
+  margin-top: 4px;
+  display: none;
+}
+.form-error-msg.visible { display: block; }
+
+/* Botón enviar */
+.btn-send {
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  font-size: 15px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 9px;
+  margin-top: 6px;
+  border: none;
+}
+.btn-send:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+/* ── Tarjeta de información ── */
+.contact-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.contact-info-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.contact-info-icon {
+  width: 42px; height: 42px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.contact-info-label {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+.contact-info-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Nota WhatsApp */
+.whatsapp-note {
+  background: rgba(0,168,132,0.09);
+  border: 1px solid rgba(0,168,132,0.26);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: auto;
+}
+.whatsapp-note-icon { font-size: 19px; flex-shrink: 0; }
+.whatsapp-note p {
+  font-size: 13px;
+  color: var(--accent);
+  line-height: 1.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}

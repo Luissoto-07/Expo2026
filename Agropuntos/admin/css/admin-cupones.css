@@ -1,0 +1,159 @@
+/* ============================================
+   CUPONES - Gestión de cupones admin
+   ============================================ */
+
+.cupones-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── Tarjeta de cupón admin ── */
+.cupon-card-admin {
+  background: var(--a-card);
+  border: 1px solid var(--a-border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s;
+  position: relative;
+  cursor: default;
+}
+.cupon-card-admin:hover {
+  border-color: var(--a-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--a-shadow);
+}
+
+/* Badge de puntos arriba derecha */
+.cupon-pts-badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(0,168,132,0.12);
+  color: var(--a-accent);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,168,132,0.25);
+}
+
+/* Logo del cupón */
+.cupon-logo {
+  width: 62px; height: 62px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+.cupon-logo img {
+  width: 48px; height: 48px;
+  object-fit: contain;
+}
+.cupon-logo-emoji {
+  font-size: 34px;
+}
+
+.cupon-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--a-text);
+  margin-top: 4px;
+}
+
+.cupon-discount {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--a-accent);
+}
+
+/* Acciones */
+.cupon-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* ── Modal detalle cupón ── */
+.cupon-modal-logo {
+  width: 90px; height: 90px;
+  border-radius: 18px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+.cupon-modal-logo img {
+  width: 68px; height: 68px;
+  object-fit: contain;
+}
+.cupon-modal-logo-emoji { font-size: 48px; }
+
+.cupon-modal-name {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--a-accent);
+  margin-bottom: 4px;
+}
+
+.cupon-modal-subtitle {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--a-text);
+  margin-bottom: 10px;
+}
+
+.cupon-modal-pts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--a-accent);
+  margin-bottom: 12px;
+}
+
+.cupon-modal-desc {
+  text-align: center;
+  font-size: 14px;
+  color: var(--a-text-2);
+  margin-bottom: 4px;
+}
+
+/* ── Upload imagen ── */
+.img-upload-area {
+  border: 2px dashed var(--a-border-input);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--a-text-3);
+  font-size: 14px;
+}
+.img-upload-area:hover {
+  border-color: var(--a-accent);
+  background: rgba(0,168,132,0.04);
+  color: var(--a-accent);
+}
+.img-upload-area input { display: none; }
+.img-preview {
+  width: 80px; height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 0 auto 8px;
+  display: block;
+  background: #fff;
+}
+
+@media (max-width: 1100px) { .cupones-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px)  { .cupones-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px)  { .cupones-grid { grid-template-columns: 1fr; } }

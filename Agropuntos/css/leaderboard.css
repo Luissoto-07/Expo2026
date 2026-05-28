@@ -1,0 +1,213 @@
+/* ============================================
+   LEADERBOARD - Tabla de clasificación
+   ============================================ */
+
+.leaderboard-page {
+  padding: 98px 0 78px;
+  min-height: 100vh;
+}
+
+/* ── Podio ── */
+.podium-section { margin-bottom: 56px; }
+
+.podium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 14px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.podium-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 30px 22px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease both;
+}
+.podium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.podium-card.first {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), 0 8px 28px rgba(255,215,0,0.18);
+}
+
+.podium-medal {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.podium-avatar {
+  width: 70px;
+  height: 70px;
+  font-size: 21px;
+  margin: 8px auto 14px;
+}
+
+.podium-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.podium-dept {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.podium-points {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+.podium-pts-label {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+.podium-tasks {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+/* ── Lista completa ── */
+.leaderboard-list-section { margin-top: 56px; }
+
+.leaderboard-list-title {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+/* ── Buscador ── */
+.leaderboard-search {
+  position: relative;
+  margin-bottom: 18px;
+}
+.leaderboard-search input {
+  width: 100%;
+  padding: 13px 16px 13px 44px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 14.5px;
+  outline: none;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+.leaderboard-search input::placeholder { color: var(--text-muted); }
+.leaderboard-search input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.leaderboard-search .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+/* ── Fila de colaborador ── */
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 7px;
+  transition: all 0.22s ease;
+  animation: fadeInUp 0.4s ease both;
+}
+.leaderboard-row:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+  background: var(--bg-card-hover);
+}
+
+.leaderboard-row.current-user {
+  border-color: var(--logo-red);
+  background: rgba(139,0,0,0.06);
+}
+
+.rank-number {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-muted);
+  min-width: 38px;
+  text-align: center;
+}
+.rank-number.top3 { color: var(--accent); }
+
+.row-avatar {
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+}
+
+.row-info { flex: 1; }
+.row-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.row-dept {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.row-tasks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.row-tasks::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.row-points {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+  min-width: 88px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .podium-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+  .leaderboard-row {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .row-tasks { display: none; }
+}

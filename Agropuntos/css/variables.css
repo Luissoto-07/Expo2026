@@ -1,0 +1,90 @@
+/* ============================================
+   VARIABLES - Tema claro y oscuro
+   Paleta de colores WhatsApp
+   ============================================ */
+
+:root {
+  /* Colores del logo (rojo y verde) */
+  --logo-red:          #8B0000;
+  --logo-red-light:    #A50000;
+  --logo-green:        #6DBE45;
+  --logo-green-dark:   #4A9020;
+
+  /* Colores WhatsApp - MODO OSCURO (por defecto) */
+  --bg-primary:        #111B21;
+  --bg-secondary:      #1F2C34;
+  --bg-card:           #202C33;
+  --bg-card-hover:     #2A3942;
+  --bg-input:          #2A3942;
+  --bg-navbar:         #1F2C34;
+
+  --text-primary:      #E9EDEF;
+  --text-secondary:    #8696A0;
+  --text-muted:        #667781;
+
+  --border-color:      #2A3942;
+  --border-input:      #3B4A54;
+
+  /* Verde WhatsApp como acento principal */
+  --accent:            #00A884;
+  --accent-hover:      #017A62;
+  --accent-light:      #25D366;
+  --accent-glow:       rgba(0, 168, 132, 0.25);
+
+  /* Hero usa el rojo del logo */
+  --hero-bg:           linear-gradient(135deg, #6B0000 0%, #8B0000 50%, #5a0000 100%);
+
+  /* Badge de puntos */
+  --points-bg:         #00A884;
+  --points-text:       #ffffff;
+
+  /* Medallas */
+  --gold:              #FFD700;
+  --silver:            #C0C0C0;
+  --bronze:            #CD7F32;
+
+  /* Sombras */
+  --shadow-card:       0 2px 16px rgba(0, 0, 0, 0.45);
+  --shadow-hover:      0 8px 32px rgba(0, 0, 0, 0.65);
+
+  /* Scrollbar */
+  --scrollbar-bg:      #111B21;
+  --scrollbar-thumb:   #2A3942;
+
+  /* Separador */
+  --divider:           #2A3942;
+}
+
+/* ============================================
+   MODO CLARO - Paleta WhatsApp Light
+   ============================================ */
+[data-theme="light"] {
+  --bg-primary:        #F0F2F5;
+  --bg-secondary:      #FFFFFF;
+  --bg-card:           #FFFFFF;
+  --bg-card-hover:     #F5F6F6;
+  --bg-input:          #F0F2F5;
+  --bg-navbar:         #FFFFFF;
+
+  --text-primary:      #111B21;
+  --text-secondary:    #54656F;
+  --text-muted:        #8696A0;
+
+  --border-color:      #E9EDEF;
+  --border-input:      #D1D7DB;
+
+  --accent:            #00A884;
+  --accent-hover:      #017A62;
+  --accent-light:      #25D366;
+  --accent-glow:       rgba(0, 168, 132, 0.15);
+
+  --hero-bg:           linear-gradient(135deg, #6B0000 0%, #8B0000 50%, #5a0000 100%);
+
+  --shadow-card:       0 2px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hover:      0 8px 32px rgba(0, 0, 0, 0.14);
+
+  --scrollbar-bg:      #F0F2F5;
+  --scrollbar-thumb:   #D1D7DB;
+
+  --divider:           #E9EDEF;
+}

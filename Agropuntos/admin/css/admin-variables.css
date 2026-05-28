@@ -1,0 +1,60 @@
+/* ============================================
+   ADMIN VARIABLES - Paleta WhatsApp Dark/Light
+   ============================================ */
+
+:root {
+  /* Verdes WhatsApp / acento */
+  --a-accent:        #00A884;
+  --a-accent-hover:  #017A62;
+  --a-accent-light:  #25D366;
+  --a-accent-glow:   rgba(0,168,132,0.2);
+
+  /* Rojo logo */
+  --a-red:           #8B0000;
+  --a-red-light:     #c0392b;
+
+  /* Modo OSCURO (defecto) */
+  --a-bg:            #111B21;
+  --a-sidebar-bg:    #1F2C34;
+  --a-card:          #202C33;
+  --a-card-hover:    #2A3942;
+  --a-input:         #2A3942;
+  --a-border:        #2A3942;
+  --a-border-input:  #3B4A54;
+
+  --a-text:          #E9EDEF;
+  --a-text-2:        #8696A0;
+  --a-text-3:        #667781;
+
+  --a-shadow:        0 2px 16px rgba(0,0,0,0.45);
+  --a-shadow-lg:     0 8px 32px rgba(0,0,0,0.65);
+
+  /* Estados */
+  --a-success:       #00A884;
+  --a-warning:       #F39C12;
+  --a-danger:        #c0392b;
+  --a-info:          #2980b9;
+  --a-purple:        #8e44ad;
+  --a-orange:        #e67e22;
+
+  --a-gold:          #FFD700;
+  --a-silver:        #C0C0C0;
+  --a-bronze:        #CD7F32;
+}
+
+[data-theme="light"] {
+  --a-bg:            #F0F2F5;
+  --a-sidebar-bg:    #FFFFFF;
+  --a-card:          #FFFFFF;
+  --a-card-hover:    #F5F6F6;
+  --a-input:         #F0F2F5;
+  --a-border:        #E9EDEF;
+  --a-border-input:  #D1D7DB;
+
+  --a-text:          #111B21;
+  --a-text-2:        #54656F;
+  --a-text-3:        #8696A0;
+
+  --a-shadow:        0 2px 16px rgba(0,0,0,0.08);
+  --a-shadow-lg:     0 8px 32px rgba(0,0,0,0.14);
+}

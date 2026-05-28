@@ -1,0 +1,124 @@
+/* ============================================
+   LISTADO DE PUNTOS
+   ============================================ */
+
+/* ── Cards de estadísticas ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--a-card);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.25s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--a-shadow); }
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stat-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.stat-icon.green  { background: rgba(0,168,132,0.12); }
+.stat-icon.blue   { background: rgba(41,128,185,0.12); }
+.stat-icon.red    { background: rgba(192,57,43,0.12); }
+.stat-icon.purple { background: rgba(142,68,173,0.12); }
+
+.stat-card-label {
+  font-size: 13px;
+  color: var(--a-text-2);
+  font-weight: 500;
+}
+
+.stat-card-value {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-card-value.green  { color: var(--a-accent); }
+.stat-card-value.blue   { color: var(--a-info); }
+.stat-card-value.red    { color: var(--a-danger); }
+.stat-card-value.purple { color: var(--a-purple); }
+
+.stat-card-trend {
+  font-size: 12px;
+  color: var(--a-text-3);
+}
+
+/* ── Tabla de puntos ── */
+.puntos-table-wrap {
+  background: var(--a-card);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.puntos-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--a-border);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.puntos-table-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--a-text);
+}
+
+/* Acciones iconos en tabla */
+.icon-btn {
+  width: 30px; height: 30px;
+  border-radius: 7px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  transition: background 0.2s;
+  color: var(--a-text-2);
+}
+.icon-btn:hover { background: var(--a-card-hover); }
+.icon-btn.green  { color: var(--a-accent); }
+.icon-btn.blue   { color: var(--a-info); }
+.icon-btn.yellow { color: var(--a-warning); }
+.icon-btn.red    { color: var(--a-danger); }
+.icon-btn:hover.green  { background: rgba(0,168,132,0.1); }
+.icon-btn:hover.red    { background: rgba(192,57,43,0.1); }
+
+.user-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-mini-info .u-name {
+  font-size: 14px; font-weight: 600; color: var(--a-text);
+}
+.user-mini-info .u-phone {
+  font-size: 12px; color: var(--a-text-3);
+}
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}

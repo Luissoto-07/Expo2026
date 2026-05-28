@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · AgroPuntos</title>
+  <link rel="icon" href="../assets/logo.png">
+  <link rel="stylesheet" href="css/admin-variables.css">
+  <link rel="stylesheet" href="css/admin-base.css">
+  <link rel="stylesheet" href="css/admin-sidebar.css">
+  <link rel="stylesheet" href="css/admin-usuarios.css">
+  <link rel="stylesheet" href="css/admin-puntos.css">
+  <link rel="stylesheet" href="css/admin-tareas.css">
+  <link rel="stylesheet" href="css/admin-historial.css">
+  <link rel="stylesheet" href="css/admin-cupones.css">
+  <link rel="stylesheet" href="css/admin-configuracion.css">
+  <script>
+    (function(){
+      if(localStorage.getItem('ap-admin-auth')!=='true') window.location.href='index.html';
+      var t=localStorage.getItem('agropuntos-theme');
+      if(t) document.documentElement.setAttribute('data-theme',t);
+    })();
+  </script>
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="admin-sidebar">
+    <a href="#" class="sidebar-brand">
+      <div class="sidebar-logo">
+        <img src="../assets/logo.png" alt="AgroPuntos">
+      </div>
+      <span class="sidebar-brand-name">Agro<span>Puntos</span></span>
+    </a>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Menú Admin</div>
+
+      <button class="sidebar-item active" data-page="usuarios">
+        <span class="sidebar-item-icon">👤</span> Usuarios
+      </button>
+      <button class="sidebar-item" data-page="puntos">
+        <span class="sidebar-item-icon">🏆</span> Listado de Puntos
+      </button>
+      <button class="sidebar-item" data-page="tareas">
+        <span class="sidebar-item-icon">✅</span> Tareas
+      </button>
+      <button class="sidebar-item" data-page="historial">
+        <span class="sidebar-item-icon">🕐</span> Historial
+      </button>
+      <button class="sidebar-item" data-page="cupones">
+        <span class="sidebar-item-icon">🎁</span> Cupones
+      </button>
+
+      <div class="sidebar-divider"></div>
+
+      <button class="sidebar-item" data-page="configuracion">
+        <span class="sidebar-item-icon">⚙️</span> Configuración
+      </button>
+    </div>
+
+    <div class="sidebar-bottom">
+      <button class="sidebar-item" id="btn-logout" style="color:var(--a-danger)">
+        <span class="sidebar-item-icon">🚪</span> Cerrar Sesión
+      </button>
+    </div>
+  </aside>
+
+  <!-- Overlay móvil -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- ═══ CONTENIDO ═══ -->
+  <div class="admin-content">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <span class="topbar-title" id="topbar-title">Gestión de Usuarios</span>
+      <div class="topbar-actions">
+        <a href="../index.html" target="_blank" class="btn-a btn-ghost btn-sm">↗ Ver sitio</a>
+      </div>
+    </div>
+
+    <!-- ══ PÁGINA: USUARIOS ══ -->
+    <div class="admin-page active" id="page-usuarios">
+      <div class="page-header">
+        <div class="page-header-left">
+          <button class="btn-a btn-primary" id="btn-nuevo-usuario">+ Agregar nuevo</button>
+        </div>
+        <div class="page-header-right">
+          <div class="toolbar-search">
+            <span class="toolbar-search-icon">🔍</span>
+            <input type="text" id="buscar-usuario" placeholder="Buscar usuario...">
+          </div>
+          <button class="btn-a btn-ghost btn-sm">Filtros</button>
+          <button class="btn-a btn-ghost btn-sm" id="btn-exportar-usuarios">Exportar</button>
+        </div>
+      </div>
+
+      <div class="usuarios-table-wrap">
+        <table class="table-a">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Username</th>
+              <th>Estado</th>
+              <th>Nivel</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody id="usuarios-tbody"></tbody>
+        </table>
+        <div class="pagination">
+          <span id="pag-info"></span>
+          <div class="pagination-btns" id="pag-btns"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PÁGINA: PUNTOS ══ -->
+    <div class="admin-page" id="page-puntos">
+      <h2 style="font-size:20px;font-weight:800;color:var(--a-text);margin-bottom:4px">Listado de Puntos</h2>
+      <p style="font-size:13.5px;color:var(--a-text-3);margin-bottom:20px">Sistema de recompensas y puntos de usuario</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon green">🏆</div>
+            <span class="stat-card-label">Puntos Ganados</span>
+          </div>
+          <div class="stat-card-value green" id="pts-ganados">0</div>
+          <div class="stat-card-trend">+12% vs mes anterior</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon blue">✅</div>
+            <span class="stat-card-label">Puntos Usados</span>
+          </div>
+          <div class="stat-card-value blue" id="pts-usados">0</div>
+          <div class="stat-card-trend">+8% vs mes anterior</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon red">❌</div>
+            <span class="stat-card-label">Puntos Perdidos</span>
+          </div>
+          <div class="stat-card-value red" id="pts-perdidos">0</div>
+          <div class="stat-card-trend">-5% vs mes anterior</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-icon purple">🥇</div>
+            <span class="stat-card-label">Puntos Disponibles</span>
+          </div>
+          <div class="stat-card-value purple" id="pts-disponibles">0</div>
+          <div class="stat-card-trend">Total acumulado</div>
+        </div>
+      </div>
+
+      <div class="puntos-table-wrap">
+        <div class="puntos-table-header">
+          <span class="puntos-table-title">Usuarios y sus puntos</span>
+          <button class="btn-a btn-ghost btn-sm" id="btn-exportar-puntos">Exportar</button>
+        </div>
+        <table class="table-a">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Puntos Actuales</th>
+              <th>Puntos Canjeados</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="puntos-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PÁGINA: TAREAS ══ -->
+    <div class="admin-page" id="page-tareas">
+      <div class="page-header">
+        <button class="btn-a btn-primary" id="btn-nueva-tarea">+ Agregar nueva tarea</button>
+        <div class="page-header-right">
+          <button class="btn-a btn-ghost btn-sm">Filtros</button>
+          <button class="btn-a btn-ghost btn-sm" id="btn-exportar-tareas">Exportar</button>
+        </div>
+      </div>
+
+      <div class="usuarios-table-wrap">
+        <table class="table-a">
+          <thead>
+            <tr>
+              <th>Tarea</th>
+              <th>Estado</th>
+              <th>Prioridad</th>
+              <th>Fecha de Vencimiento</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tareas-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PÁGINA: HISTORIAL ══ -->
+    <div class="admin-page" id="page-historial">
+      <div class="page-header">
+        <div>
+          <h2 style="font-size:20px;font-weight:800;color:var(--a-text)">Historial de Actividad</h2>
+          <p style="font-size:13.5px;color:var(--a-text-3)">Registro de todas las acciones del sistema</p>
+        </div>
+        <div class="page-header-right">
+          <select id="historial-filter" class="form-select-a" style="width:auto;padding:8px 32px 8px 12px">
+            <option value="all">Todos</option>
+            <option value="blue">Registro</option>
+            <option value="green">Tareas/Puntos</option>
+            <option value="red">Eliminados</option>
+            <option value="yellow">Cupones</option>
+            <option value="orange">Configuración</option>
+          </select>
+          <button class="btn-a btn-ghost btn-sm" id="btn-exportar-historial">Exportar</button>
+        </div>
+      </div>
+
+      <div class="historial-list" id="historial-list"></div>
+    </div>
+
+    <!-- ══ PÁGINA: CUPONES ══ -->
+    <div class="admin-page" id="page-cupones">
+      <div class="page-header">
+        <div>
+          <h2 style="font-size:20px;font-weight:800;color:var(--a-text)">Gestión de Cupones</h2>
+          <p style="font-size:13.5px;color:var(--a-text-3)">Administra cupones y recompensas disponibles</p>
+        </div>
+        <button class="btn-a btn-primary" id="btn-nuevo-cupon">+ Agregar cupón</button>
+      </div>
+      <div class="cupones-grid" id="cupones-grid-admin"></div>
+    </div>
+
+    <!-- ══ PÁGINA: CONFIGURACIÓN ══ -->
+    <div class="admin-page" id="page-configuracion">
+      <div class="config-grid">
+
+        <!-- Apariencia -->
+        <div class="config-card">
+          <div class="config-card-header">
+            <div class="config-card-icon cc-green">✅</div>
+            <div>
+              <div class="config-card-title">Apariencia</div>
+              <div class="config-card-subtitle">Personaliza la apariencia de la plataforma.</div>
+            </div>
+          </div>
+          <div style="font-size:13px;color:var(--a-text-3);margin-bottom:10px">Modo de visualización</div>
+          <div class="theme-options">
+            <div class="theme-option" data-theme="light">
+              <span class="theme-option-icon">☀️</span>
+              <div class="theme-option-text">
+                <div class="t-name">Claro</div>
+                <div class="t-desc">Modo claro</div>
+              </div>
+              <span class="theme-option-check">✔</span>
+            </div>
+            <div class="theme-option selected" data-theme="dark">
+              <span class="theme-option-icon">🌙</span>
+              <div class="theme-option-text">
+                <div class="t-name">Oscuro</div>
+                <div class="t-desc">Modo oscuro</div>
+              </div>
+              <span class="theme-option-check">✔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="config-card">
+          <div class="config-card-header">
+            <div class="config-card-icon cc-blue">📞</div>
+            <div>
+              <div class="config-card-title">Información de Contacto</div>
+              <div class="config-card-subtitle">Actualiza la información de contacto</div>
+            </div>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Teléfono</label>
+            <input type="text" id="cfg-telefono" class="form-input-a" value="+502 5555-0000">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Email</label>
+            <input type="email" id="cfg-email" class="form-input-a" value="admin@agropuntos.gt">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Dirección</label>
+            <input type="text" id="cfg-direccion" class="form-input-a" value="Ciudad de Guatemala, GT">
+          </div>
+          <button class="btn-a btn-primary btn-full" id="btn-actualizar-contacto">Actualizar Información</button>
+        </div>
+
+        <!-- Perfil Admin -->
+        <div class="config-card">
+          <div class="config-card-header">
+            <div class="config-card-icon cc-purple">👤</div>
+            <div>
+              <div class="config-card-title">Perfil de Administrador</div>
+              <div class="config-card-subtitle">Gestiona tu perfil de administrador</div>
+            </div>
+          </div>
+          <div class="admin-avatar-section">
+            <div class="av av-xl" style="background:var(--a-accent)">AD</div>
+            <div class="admin-avatar-info">
+              <div class="a-name">Administrador Principal</div>
+              <div class="a-role">Super Admin · AgroPuntos</div>
+            </div>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Nombre</label>
+            <input type="text" id="cfg-admin-name" class="form-input-a" value="Administrador Principal">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Email</label>
+            <input type="email" id="cfg-admin-email" class="form-input-a" value="admin@agropuntos.gt">
+          </div>
+          <button class="btn-a btn-primary btn-full" id="btn-guardar-perfil">Guardar Perfil</button>
+        </div>
+
+        <!-- Gestión de datos -->
+        <div class="config-card">
+          <div class="config-card-header">
+            <div class="config-card-icon cc-orange">⚙️</div>
+            <div>
+              <div class="config-card-title">Gestión de Datos</div>
+              <div class="config-card-subtitle">Administra y gestiona los datos del sistema</div>
+            </div>
+          </div>
+          <div class="data-action-item" id="btn-exportar-todo" style="cursor:pointer">
+            <span class="dai-icon">⬇️</span>
+            <div>
+              <div class="dai-name">Exportar datos</div>
+              <div class="dai-desc">Descargar todos los datos en CSV</div>
+            </div>
+            <span class="dai-arrow">›</span>
+          </div>
+          <div class="data-action-item" id="btn-limpiar-historial" style="cursor:pointer">
+            <span class="dai-icon">🗑️</span>
+            <div>
+              <div class="dai-name">Limpiar historial</div>
+              <div class="dai-desc">Eliminar registros de actividad antiguos</div>
+            </div>
+            <span class="dai-arrow">›</span>
+          </div>
+          <div style="margin-top:20px;font-size:13px;color:var(--a-text-3)">Cambiar Contraseña</div>
+          <div class="form-group-a" style="margin-top:10px">
+            <label class="form-label-a">Nueva contraseña</label>
+            <input type="password" id="cfg-new-pass" class="form-input-a" placeholder="••••••••">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Confirmar contraseña</label>
+            <input type="password" id="cfg-confirm-pass" class="form-input-a" placeholder="••••••••">
+          </div>
+          <button class="btn-a btn-primary btn-full" id="btn-cambiar-pass">Cambiar Contraseña</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /admin-content -->
+</div><!-- /admin-layout -->
+
+<!-- ═══ TOGGLE MÓVIL ═══ -->
+<button class="sidebar-toggle">☰</button>
+
+<!-- ════════════════════════════════════
+     MODALES
+     ════════════════════════════════════ -->
+
+<!-- Ver Usuario -->
+<div class="modal-overlay-a" id="modal-ver-usuario">
+  <div class="modal-a modal-a-sm">
+    <div class="modal-header-a">
+      <span class="modal-title-a">Detalle de Usuario</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-ver-usuario')">×</button>
+    </div>
+    <div class="modal-body-a" id="ver-modal-body"></div>
+  </div>
+</div>
+
+<!-- Editar/Nuevo Usuario -->
+<div class="modal-overlay-a" id="modal-editar-usuario">
+  <div class="modal-a">
+    <div class="modal-header-a">
+      <span class="modal-title-a" id="modal-eu-title">Editar Usuario</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-editar-usuario')">×</button>
+    </div>
+    <div class="modal-body-a">
+      <form id="eu-form" onsubmit="return false">
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Nombre completo</label>
+            <input type="text" id="eu-name" class="form-input-a" placeholder="Nombre completo" required>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Username</label>
+            <input type="text" id="eu-username" class="form-input-a" placeholder="username">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Email</label>
+            <input type="email" id="eu-email" class="form-input-a" placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Teléfono</label>
+            <input type="text" id="eu-phone" class="form-input-a" placeholder="5544-0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Departamento</label>
+            <input type="text" id="eu-dept" class="form-input-a" placeholder="Ventas">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Puntos</label>
+            <input type="number" id="eu-points" class="form-input-a" placeholder="0" min="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Nivel</label>
+            <select id="eu-nivel" class="form-select-a">
+              <option value="Basic">Basic</option>
+              <option value="Silver">Silver</option>
+              <option value="Gold">Gold</option>
+              <option value="Premium">Premium</option>
+            </select>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Estado</label>
+            <select id="eu-status" class="form-select-a">
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer-a">
+      <button class="btn-a btn-ghost" onclick="AdminModal.close('modal-editar-usuario')">Cancelar</button>
+      <button class="btn-a btn-primary" id="btn-guardar-usuario">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ver Tarea -->
+<div class="modal-overlay-a" id="modal-ver-tarea">
+  <div class="modal-a modal-a-sm">
+    <div class="modal-header-a">
+      <span class="modal-title-a">Detalle de Tarea</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-ver-tarea')">×</button>
+    </div>
+    <div class="modal-body-a" id="ver-tarea-body"></div>
+  </div>
+</div>
+
+<!-- Editar/Nueva Tarea -->
+<div class="modal-overlay-a" id="modal-editar-tarea">
+  <div class="modal-a">
+    <div class="modal-header-a">
+      <span class="modal-title-a" id="modal-et-title">Editar Tarea</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-editar-tarea')">×</button>
+    </div>
+    <div class="modal-body-a">
+      <form id="et-form" onsubmit="return false">
+        <div class="form-group-a">
+          <label class="form-label-a">Nombre de la tarea</label>
+          <input type="text" id="et-name" class="form-input-a" placeholder="Nombre de la tarea" required>
+        </div>
+        <div class="form-group-a">
+          <label class="form-label-a">Descripción</label>
+          <input type="text" id="et-desc" class="form-input-a" placeholder="Descripción breve">
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Estado</label>
+            <select id="et-status" class="form-select-a">
+              <option value="pendiente">Pendiente</option>
+              <option value="en-progreso">En Progreso</option>
+              <option value="completado">Completado</option>
+            </select>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Prioridad</label>
+            <select id="et-prioridad" class="form-select-a">
+              <option value="Alta">Alta</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Fecha de vencimiento</label>
+            <input type="date" id="et-fecha" class="form-input-a">
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Puntos que otorga</label>
+            <input type="number" id="et-puntos" class="form-input-a" placeholder="100" min="0">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer-a">
+      <button class="btn-a btn-ghost" onclick="AdminModal.close('modal-editar-tarea')">Cancelar</button>
+      <button class="btn-a btn-primary" id="btn-guardar-tarea">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Detalle Cupón -->
+<div class="modal-overlay-a" id="modal-detalle-cupon">
+  <div class="modal-a modal-a-sm">
+    <div class="modal-header-a">
+      <span class="modal-title-a">Detalle del Cupón</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-detalle-cupon')">×</button>
+    </div>
+    <div class="modal-body-a" id="detalle-cupon-body"></div>
+    <div class="modal-footer-a">
+      <button class="btn-a btn-info btn-full" id="btn-detalle-editar">✏️ Editar</button>
+      <button class="btn-a btn-danger btn-full" id="btn-detalle-eliminar">✕ Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Editar/Nuevo Cupón -->
+<div class="modal-overlay-a" id="modal-editar-cupon">
+  <div class="modal-a modal-a-lg">
+    <div class="modal-header-a">
+      <span class="modal-title-a" id="modal-ec-title">Editar Cupón</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-editar-cupon')">×</button>
+    </div>
+    <div class="modal-body-a">
+      <form id="ec-form" onsubmit="return false">
+        <!-- Upload imagen -->
+        <div class="form-group-a">
+          <label class="form-label-a">Imagen del cupón</label>
+          <div class="img-upload-area" id="img-upload-area">
+            <input type="file" id="ec-img-file" accept="image/*">
+            <div id="img-preview">
+              <div style="font-size:13px;color:var(--a-text-3)">📷 Click o arrastra una imagen aquí</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Nombre del cupón</label>
+            <input type="text" id="ec-name" class="form-input-a" placeholder="Ej: Spotify" required>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Emoji (si no hay imagen)</label>
+            <input type="text" id="ec-emoji" class="form-input-a" placeholder="🎁">
+          </div>
+        </div>
+        <div class="form-group-a">
+          <label class="form-label-a">Subtítulo / descripción corta</label>
+          <input type="text" id="ec-subtitle" class="form-input-a" placeholder="Tarjeta de regalo...">
+        </div>
+        <div class="form-row">
+          <div class="form-group-a">
+            <label class="form-label-a">Puntos requeridos</label>
+            <input type="number" id="ec-pts" class="form-input-a" placeholder="500" min="1" required>
+          </div>
+          <div class="form-group-a">
+            <label class="form-label-a">Descuento / beneficio</label>
+            <input type="text" id="ec-discount" class="form-input-a" placeholder="25%">
+          </div>
+        </div>
+        <div class="form-group-a">
+          <label class="form-label-a">Descripción completa</label>
+          <textarea id="ec-desc" class="form-textarea-a" placeholder="Describe el cupón..."></textarea>
+        </div>
+        <div class="form-group-a">
+          <label class="form-label-a">Estado</label>
+          <select id="ec-status" class="form-select-a">
+            <option value="disponible">Disponible</option>
+            <option value="limitado">Limitado</option>
+            <option value="agotado">Agotado</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer-a">
+      <button class="btn-a btn-ghost" onclick="AdminModal.close('modal-editar-cupon')">Cancelar</button>
+      <button class="btn-a btn-primary" id="btn-guardar-cupon">Guardar Cupón</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmar acción -->
+<div class="modal-overlay-a" id="modal-confirm">
+  <div class="modal-a modal-a-sm">
+    <div class="modal-header-a">
+      <span class="modal-title-a">Confirmar acción</span>
+      <button class="modal-close-a" onclick="AdminModal.close('modal-confirm')">×</button>
+    </div>
+    <div class="modal-body-a">
+      <p id="confirm-msg" style="font-size:15px;color:var(--a-text);line-height:1.6"></p>
+    </div>
+    <div class="modal-footer-a">
+      <button class="btn-a btn-ghost" onclick="AdminModal.close('modal-confirm')">Cancelar</button>
+      <button class="btn-a btn-danger btn-full" id="confirm-yes">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script src="js/admin-data.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-usuarios.js"></script>
+<script src="js/admin-puntos.js"></script>
+<script src="js/admin-tareas.js"></script>
+<script src="js/admin-historial.js"></script>
+<script src="js/admin-cupones.js"></script>
+<script src="js/admin-configuracion.js"></script>
+<script src="js/admin-core.js"></script>
+<script>
+  // Guard de autenticación
+  AdminAuth.guard();
+</script>
+</body>
+</html>
