@@ -30,6 +30,19 @@ const LeaderboardManager = (() => {
     return list;
   }
 
+  // ── Actualizar Datos del Navbar Real ──────────
+
+  function updateNavbarPoints() {
+    // Busca el contenedor de puntos en el Navbar de tu HTML
+    const pointsDisplay = document.querySelector('.user-points-display');
+    
+    // Si el contenedor existe y el estado de la app tiene al usuario cargado con sus puntos...
+    if (pointsDisplay && AppState && AppState.currentUser) {
+      const currentPoints = AppState.currentUser.points;
+      pointsDisplay.textContent = `${currentPoints.toLocaleString()} pts`;
+    }
+  }
+
   // ── Podio ────────────────────────────────────
 
   function renderPodium() {
@@ -118,6 +131,7 @@ const LeaderboardManager = (() => {
   // ── Init ─────────────────────────────────────
 
   function init() {
+    updateNavbarPoints(); // 🔥 Sobreescribe el "1,250 pts" default de tu HTML por tus puntos reales
     renderPodium();
     renderList();
     _setupSearch();
