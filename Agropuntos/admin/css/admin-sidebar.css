@@ -1,0 +1,165 @@
+/* ============================================
+   SIDEBAR - Menú lateral del admin
+   ============================================ */
+
+.admin-sidebar {
+  width: 240px;
+  background: var(--a-sidebar-bg);
+  border-right: 1px solid var(--a-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  z-index: 200;
+  transition: transform 0.3s ease, background 0.3s;
+  overflow-y: auto;
+}
+
+/* ── Brand / Logo ── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--a-border);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.sidebar-logo {
+  width: 38px; height: 38px;
+  background: var(--a-accent);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar-logo img {
+  width: 28px; height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.sidebar-brand-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--a-text);
+  letter-spacing: -0.3px;
+}
+
+.sidebar-brand-name span { color: var(--a-accent); }
+
+/* ── Sección del menú ── */
+.sidebar-section {
+  padding: 16px 12px 8px;
+  flex: 1;
+}
+
+.sidebar-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--a-text-3);
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+/* ── Ítem de navegación ── */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+  color: var(--a-text-2);
+  font-size: 14.5px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+
+.sidebar-item:hover {
+  background: var(--a-card);
+  color: var(--a-text);
+}
+
+.sidebar-item.active {
+  background: rgba(0,168,132,0.12);
+  color: var(--a-accent);
+  font-weight: 600;
+}
+
+.sidebar-item-icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar-item-badge {
+  margin-left: auto;
+  background: var(--a-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ── Divisor ── */
+.sidebar-divider {
+  height: 1px;
+  background: var(--a-border);
+  margin: 10px 12px;
+}
+
+/* ── Parte inferior ── */
+.sidebar-bottom {
+  padding: 12px;
+  border-top: 1px solid var(--a-border);
+  flex-shrink: 0;
+}
+
+/* ── Overlay móvil ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 199;
+}
+
+/* ── Toggle móvil ── */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 14px; left: 14px;
+  z-index: 300;
+  background: var(--a-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 38px; height: 38px;
+  font-size: 18px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.open { display: block; }
+  .sidebar-toggle { display: flex; }
+}

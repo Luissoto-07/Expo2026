@@ -1,0 +1,69 @@
+/* ============================================
+   HISTORIAL - Registro de actividad
+   ============================================ */
+
+.historial-list {
+  background: var(--a-card);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.historial-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--a-border);
+  transition: background 0.18s;
+  animation: fadeInUp 0.4s ease both;
+}
+.historial-item:last-child { border-bottom: none; }
+.historial-item:hover { background: var(--a-card-hover); }
+
+/* Punto de color */
+.historial-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Contenido */
+.historial-body { flex: 1; }
+
+.historial-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--a-text);
+  margin-bottom: 2px;
+}
+
+.historial-desc {
+  font-size: 13px;
+  color: var(--a-text-2);
+}
+
+/* Tiempo */
+.historial-time {
+  text-align: right;
+  flex-shrink: 0;
+}
+.historial-time-relative {
+  font-size: 13px;
+  color: var(--a-text-2);
+}
+.historial-time-date {
+  font-size: 12px;
+  color: var(--a-text-3);
+  margin-top: 2px;
+}
+
+/* Colores de punto */
+.dot-blue   { background: var(--a-info);    color: var(--a-info); }
+.dot-green  { background: var(--a-accent);  color: var(--a-accent); }
+.dot-purple { background: var(--a-purple);  color: var(--a-purple); }
+.dot-yellow { background: var(--a-warning); color: var(--a-warning); }
+.dot-red    { background: var(--a-danger);  color: var(--a-danger); }
+.dot-orange { background: var(--a-orange);  color: var(--a-orange); }

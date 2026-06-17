@@ -1,0 +1,174 @@
+/* ============================================
+   USUARIOS - Gestión de usuarios
+   ============================================ */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-header-left { display: flex; align-items: center; gap: 12px; }
+.page-header-right { display: flex; align-items: center; gap: 10px; }
+
+/* ── Barra de herramientas ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toolbar-search {
+  position: relative;
+  flex: 1;
+  max-width: 340px;
+}
+
+.toolbar-search input {
+  width: 100%;
+  padding: 9px 14px 9px 38px;
+  background: var(--a-input);
+  border: 1px solid var(--a-border-input);
+  border-radius: 8px;
+  color: var(--a-text);
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.toolbar-search input::placeholder { color: var(--a-text-3); }
+.toolbar-search input:focus { border-color: var(--a-accent); }
+
+.toolbar-search-icon {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--a-text-3);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* ── Tabla de usuarios ── */
+.usuarios-table-wrap {
+  background: var(--a-card);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Avatar + nombre en tabla */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-cell-info .user-name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--a-text);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.user-verified {
+  color: var(--a-accent);
+  font-size: 14px;
+}
+
+.user-cell-info .user-email {
+  font-size: 12px;
+  color: var(--a-text-3);
+}
+
+/* Nivel badge */
+.nivel-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+}
+.nivel-premium { background: rgba(142,68,173,0.15); color: var(--a-purple); }
+.nivel-gold    { background: rgba(255,215,0,0.15);  color: var(--a-gold); }
+.nivel-silver  { background: rgba(192,192,192,0.15);color: var(--a-silver); }
+.nivel-bronze  { background: rgba(205,127,50,0.15); color: var(--a-bronze); }
+.nivel-basic   { background: rgba(134,150,160,0.15);color: var(--a-text-2); }
+
+/* Botones de acción en tabla */
+.action-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Modal de usuario ── */
+.user-modal-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.user-modal-pts {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.pts-stat {
+  text-align: center;
+  background: var(--a-input);
+  border-radius: 8px;
+  padding: 10px 18px;
+}
+.pts-stat-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--a-accent);
+}
+.pts-stat-label {
+  font-size: 11px;
+  color: var(--a-text-3);
+  margin-top: 2px;
+}
+
+/* ── Paginación ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-top: 1px solid var(--a-border);
+  font-size: 13px;
+  color: var(--a-text-2);
+}
+
+.pagination-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.pag-btn {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--a-border);
+  background: var(--a-card);
+  color: var(--a-text);
+  cursor: pointer;
+  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.pag-btn:hover { background: var(--a-card-hover); border-color: var(--a-accent); }
+.pag-btn.active { background: var(--a-accent); border-color: var(--a-accent); color: #fff; }
+.pag-btn:disabled { opacity: 0.4; cursor: not-allowed; }

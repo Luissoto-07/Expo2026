@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clasificación · AgroPuntos</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/leaderboard.css">
+  <script>
+    (function(){
+      var t = localStorage.getItem('agropuntos-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-brand">
+      <img src="assets/logo.png" alt="AgroPuntos" class="navbar-logo">
+      <span class="navbar-brand-name">Agro<span>Puntos</span></span>
+    </a>
+    <ul class="navbar-nav">
+      <li><a href="index.html">🏠 Inicio</a></li>
+      <li><a href="listado.html">📊 Listado</a></li>
+      <li><a href="contacto.html">✉️ Contacto</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button class="theme-toggle">☀️</button>
+      <button class="points-badge">
+        <span class="coin">🪙</span>
+        <span class="points-text user-points-display">1,250 pts</span>
+      </button>
+      <button class="navbar-hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="navbar-mobile">
+    <a href="index.html">🏠 Inicio</a>
+    <a href="listado.html">📊 Listado</a>
+    <a href="contacto.html">✉️ Contacto</a>
+  </div>
+</nav>
+
+<!-- ═══════ LEADERBOARD ═══════ -->
+<main class="leaderboard-page">
+  <div class="container">
+
+    <div class="section-badge gold">🏆 CLASIFICACIÓN</div>
+    <h1 class="section-title">Tabla de Posiciones</h1>
+    <p class="section-subtitle">
+      Los puntos se actualizan en tiempo real. ¡Supera a tus compañeros!
+    </p>
+
+    <!-- Podio -->
+    <div class="podium-section">
+      <div class="podium-grid" id="podium-grid"></div>
+    </div>
+
+    <!-- Lista -->
+    <div class="leaderboard-list-section">
+      <h2 class="leaderboard-list-title">Todos los colaboradores</h2>
+
+      <!-- Buscador -->
+      <div class="leaderboard-search">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="leaderboard-search"
+          placeholder="Busca tu nombre..."
+          autocomplete="off"
+        >
+      </div>
+
+      <!-- Lista generada por JS -->
+      <div id="leaderboard-list"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <p>© 2026 AgroPuntos · Hecho con <span class="heart">❤️</span> para tu equipo.</p>
+</footer>
+
+<script src="js/theme.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/data.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/leaderboard.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    ThemeManager.init();
+    NavbarManager.init();
+    LeaderboardManager.init();
+  });
+</script>
+</body>
+</html>
